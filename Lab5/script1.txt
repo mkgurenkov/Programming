@@ -1,6 +1,0 @@
-replace_if_greater 1
-221
-212
-22
-1
-exit
