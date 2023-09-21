@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<collection>
+    <cities>
+        <entry>
+            <key>4</key>
+            <value>
+                <area>2.0</area>
+                <climate>TUNDRA</climate>
+                <coordinates>
+                    <x>3</x>
+                    <y>23</y>
+                </coordinates>
+                <creationDate>2023-09-15</creationDate>
+                <creationDateHash>4143695</creationDateHash>
+                <government>JUNTA</government>
+                <governor>
+                    <age>3</age>
+                    <name>D</name>
+                </governor>
+                <id>1</id>
+                <metersAboveSeaLevel>23</metersAboveSeaLevel>
+                <name>23</name>
+                <population>3</population>
+                <standardOfLiving>LOW</standardOfLiving>
+            </value>
+        </entry>
+    </cities>
+</collection>
