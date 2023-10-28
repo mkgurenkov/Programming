@@ -1,9 +1,9 @@
 package data;
 
-import helperClasses.wrappers.LocalDateTimeWrapper;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 /**
@@ -11,8 +11,7 @@ import java.util.Objects;
  * @version 1.0
  * Class for describing a human - city field
  */
-@XmlRootElement(name = "human")
-public class Human {
+public class Human implements Serializable {
     /** Field name*/
     private String name; //Поле не может быть null, Строка не может быть пустой
     /** Field age*/
@@ -30,7 +29,6 @@ public class Human {
     /** Method for getting name
      * @return String name
      */
-    @XmlElement
     public String getName() {
         return name;
     }
@@ -41,7 +39,6 @@ public class Human {
     /** Method for getting age
      * @return int age
      */
-    @XmlElement
     public int getAge() {
         return age;
     }
@@ -52,12 +49,10 @@ public class Human {
     /** Method for getting birthday
      * @return LocalDateTime birthday
      */
-    @XmlElement
     public LocalDateTime getBirthday() {
         return birthday;
     }
     /** Method for setting birthday*/
-    @XmlJavaTypeAdapter(LocalDateTimeWrapper.class)
     public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;
     }

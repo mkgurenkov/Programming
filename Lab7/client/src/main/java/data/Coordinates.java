@@ -2,14 +2,14 @@ package data;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.Objects;
 /**
  * @author Maksim Gurenkov
  * @version 1.0
  * Class for describing coordinates - city field
  */
-@XmlRootElement(name = "coordinates")
-public class Coordinates {
+public class Coordinates implements Serializable {
     /** Field x*/
     private Long x;
     /** Field y*/
@@ -24,7 +24,6 @@ public class Coordinates {
     /** Method for getting x coordinate
      * @return Long x
      */
-    @XmlElement
     public Long getX() {
         return x;
     }
@@ -35,7 +34,6 @@ public class Coordinates {
     /** Method for getting y coordinate
      * @return Long y
      */
-    @XmlElement
     public Long getY() {
         return y;
     }

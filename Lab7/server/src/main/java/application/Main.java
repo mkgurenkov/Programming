@@ -1,7 +1,11 @@
 package application;
 
-import helperClasses.CollectionManager;
-import java.util.Scanner;
+import externalConnections.InteractionWithDatabase;
+
+import java.net.DatagramSocket;
+import java.net.SocketException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author Maksim Gurenkov
@@ -9,24 +13,26 @@ import java.util.Scanner;
  * Main class for starting a program
  */
 public class Main {
+    public static volatile int threadCounter = 0;
     /**
      * Main method for starting a program
      * @param args - argument for program - path to file with xml collection
      */
     public static void main(String[] args) {
-        CollectionManager collectionManager = new CollectionManager("Collection.xml");
-        collectionManager.interactiveMode();
-//        if (args.length != 0) {
-//            String pathToFIle = args[0];
-//            CollectionManager collectionManager = new CollectionManager(pathToFIle);
-//            collectionManager.interactiveMode();
-//        } else {
-//            System.out.println("Missing argument");
-//            System.out.println("Press \"Enter\"");
-//            Scanner scanner = new Scanner(System.in);
-//            if (scanner.hasNextLine()) {
-//                scanner.nextLine();
-//            }
-//        }
+        InteractionWithDatabase.connect();
+        CollectionManager collectionManager = new CollectionManager();
+        int serverPort = 6221;
+        try {
+            DatagramSocket ds = new DatagramSocket(serverPort);
+            ExecutorService service = Executors.newFixedThreadPool(100);
+            while (true) {
+                if (threadCounter < 100) { // Проверяем, сколько активных потоков сейчас выполняется
+                    service.execute(new ServerManager(collectionManager, ds));
+                    threadCounter++;
+                }
+            }
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

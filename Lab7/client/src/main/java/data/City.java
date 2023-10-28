@@ -1,9 +1,9 @@
 package data;
 
-import helperClasses.wrappers.LocalDateWrapper;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalDate;
 /**
@@ -11,8 +11,8 @@ import java.time.LocalDate;
  * @version 1.0
  * Class for describing a city - element of collection
  */
-@XmlRootElement(name = "city")
-public class City {
+public class City implements Serializable {
+    private String username;
     /** Field: city id*/
     private Integer id;
     /** Field: city name*/
@@ -59,7 +59,6 @@ public class City {
     /** Method for getting id
      * @return Integer id
      */
-    @XmlElement
     public Integer getId() {
         return id;
     }
@@ -69,7 +68,6 @@ public class City {
     /** Method for getting name
      * @return String name
      */
-    @XmlElement
     public String getName() {
         return name;
     }
@@ -80,7 +78,6 @@ public class City {
     /** Method for getting coordinates
      * @return Coordinates coordinates
      */
-    @XmlElement
     public Coordinates getCoordinates() {
         return coordinates;
     }
@@ -91,19 +88,16 @@ public class City {
     /** Method for getting creation date
      * @return LocalDate creationDate
      */
-    @XmlElement
     public LocalDate getCreationDate() {
         return creationDate;
     }
     /** Method for setting creation date*/
-    @XmlJavaTypeAdapter(LocalDateWrapper.class)
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
     /** Method for getting area
      * @return float area
      */
-    @XmlElement
     public float getArea() {
         return area;
     }
@@ -114,7 +108,6 @@ public class City {
     /** Method for getting population
      * @return Long population
      */
-    @XmlElement
     public Integer getPopulation() {
         return population;
     }
@@ -125,7 +118,6 @@ public class City {
     /** Method for getting meters above sea level
      * @return int metersAboveSeaLevel
      */
-    @XmlElement
     public int getMetersAboveSeaLevel() {
         return metersAboveSeaLevel;
     }
@@ -136,7 +128,6 @@ public class City {
     /** Method for getting climate
      * @return Climate climate
      */
-    @XmlElement
     public Climate getClimate() {
         return climate;
     }
@@ -147,7 +138,6 @@ public class City {
     /** Method for getting government
      * @return Government government
      */
-    @XmlElement
     public Government getGovernment() {
         return government;
     }
@@ -158,7 +148,6 @@ public class City {
     /** Method for getting standard of living
      * @return StandardOfLiving standardOfLiving
      */
-    @XmlElement
     public StandardOfLiving getStandardOfLiving() {
         return standardOfLiving;
     }
@@ -169,9 +158,15 @@ public class City {
     /** Method for getting governor
      * @return Human governor
      */
-    @XmlElement
     public Human getGovernor() {
         return governor;
+    }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
     /** Method for setting governor*/
     public void setGovernor(Human governor) {
@@ -180,7 +175,6 @@ public class City {
     /** Method for getting creationDateHash
      * @return int creationDateHash
      */
-    @XmlElement
     public int getCreationDateHash() {
         return creationDateHash;
     }
@@ -228,7 +222,7 @@ public class City {
      * @return boolean isNull
      */
     public boolean isNull() {
-        if ((name == null) | (coordinates == null) | (creationDate == null) | (population == null) |
+        if ((id == null) | (name == null) | (coordinates == null) | (creationDate == null) | (population == null) |
                 (climate == null) | (governor == null)) {
             return true;
         } else if ((getCoordinates().isNull()) | (getGovernor().isNull())) {
